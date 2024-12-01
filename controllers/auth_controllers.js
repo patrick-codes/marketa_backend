@@ -17,7 +17,7 @@ module.exports = {
     const userExist = await user.findOne({ email });
     if (userExist) {
       res.status(400);
-      throw new Error("User already exist");
+      throw new Error("User With Same Email Already Exist");
     }
 
     const hashedPassword = await bcrypt.hash(password, 8);
@@ -31,11 +31,11 @@ module.exports = {
       res.status(201).json({
         _id: newUser._id,
         email: newUser.email,
-        message: "Signup sucessfull",
+        message: "Signup Sucessfull",
       });
     } else {
       res.status(400);
-      throw new Error("Details not valid.");
+      throw new Error("Details Not Valid.");
     }
   }),
 
@@ -44,7 +44,7 @@ module.exports = {
 
     if (!email || !password) {
       res.status(400);
-      throw new Error("Fields cannot be empty.");
+      throw new Error("Fields Cannot Be Empty.");
     }
 
     const userlogged = await user.findOne({ email });
@@ -60,7 +60,7 @@ module.exports = {
         { expiresIn: "30d" }
       );
 
-      res.status(200).json({ message: "user created..", accessToken });
+      res.status(200).json({ message: "User Created Sucessfully..", accessToken });
     } else {
       res.status(401);
       throw new Error("Email or Password not valid");
