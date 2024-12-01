@@ -10,13 +10,13 @@ module.exports = {
     const { username, email, password } = req.body;
 
     if (!username || !email || !password) {
-      res.status(400);
+      res.status(400).json({message:'Fields cannot be empty.'});
       throw new Error("Fields cannot be empty.");
     }
 
     const userExist = await user.findOne({ email });
     if (userExist) {
-      res.status(400);
+      res.status(400).json({message:'User With Same Email Already Exist'});
       throw new Error("User With Same Email Already Exist");
     }
 
