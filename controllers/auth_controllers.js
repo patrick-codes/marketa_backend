@@ -34,7 +34,7 @@ module.exports = {
         message: "Signup Sucessfull",
       });
     } else {
-      res.status(400);
+      res.status(400).json({message:'Details Not Valid.'});
       throw new Error("Details Not Valid.");
     }
   }),
@@ -43,7 +43,7 @@ module.exports = {
     const { email, password } = req.body;
 
     if (!email || !password) {
-      res.status(400);
+      res.status(400).json({message:'Fields Cannot Be Empty.'});
       throw new Error("Fields Cannot Be Empty.");
     }
 
@@ -62,7 +62,7 @@ module.exports = {
 
       res.status(200).json({ message: "User Created Sucessfully..", accessToken });
     } else {
-      res.status(401);
+      res.status(401).json({message:'Email or Password not valid'});
       throw new Error("Email or Password not valid");
     }
   }),
