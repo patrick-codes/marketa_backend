@@ -1,0 +1,12 @@
+node_modules/
+
+.env
+
+*.log
+logs/
+
+*.class
+*.pyc
+
+.DS_Store
+Thumbs.db
