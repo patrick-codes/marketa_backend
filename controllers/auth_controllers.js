@@ -27,16 +27,25 @@ module.exports = {
       password: hashedPassword,
     });
 
-    if (newUser) {
-      res.status(201).json({
-        _id: newUser._id,
-        email: newUser.email,
-        message: "Signup Sucessfull",
-      });
-    } else {
-      res.status(400).json({message:'Details Not Valid.'});
-      throw new Error("Details Not Valid.");
+    if(newUser){
+      res.status(200).json({ message: "User Registered Sucessfully.."});
     }
+    else {
+        res.status(400).json({message:'Details Not Valid.'});
+        throw new Error("Details Not Valid.");
+      }
+   
+
+    // if (newUser) {
+    //   res.status(201).json({
+    //     _id: newUser._id,
+    //     email: newUser.email,
+    //     message: "Signup Sucessfull",
+    //   });
+    // } else {
+    //   res.status(400).json({message:'Details Not Valid.'});
+    //   throw new Error("Details Not Valid.");
+    // }
   }),
 
   userLogin: asyncHandler(async (req, res) => {
@@ -60,7 +69,7 @@ module.exports = {
         { expiresIn: "30d" }
       );
 
-      res.status(200).json({ message: "User Created Sucessfully..", accessToken });
+      res.status(200).json({ message: "User Logged in Sucessfully..", accessToken });
     } else {
       res.status(401).json({message:'Email or Password not valid'});
       throw new Error("Email or Password not valid");
