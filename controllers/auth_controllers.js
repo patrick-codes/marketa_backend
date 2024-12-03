@@ -72,6 +72,7 @@ module.exports = {
         .json({
           message: "User Logged in Sucessfully..",
           accessToken,
+          user: userlogged.username,
           user: userlogged.email,
         });
     } else {
