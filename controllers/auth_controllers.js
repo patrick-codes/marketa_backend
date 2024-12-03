@@ -1,4 +1,4 @@
-require('dotenv').config();
+require("dotenv").config();
 const asyncHandler = require("express-async-handler");
 const user = require("../models/auth_model");
 const bcrypt = require("bcrypt");
@@ -10,13 +10,13 @@ module.exports = {
     const { username, email, password } = req.body;
 
     if (!username || !email || !password) {
-      res.status(400).json({message:'Fields cannot be empty.'});
+      res.status(400).json({ message: "Fields cannot be empty." });
       throw new Error("Fields cannot be empty.");
     }
 
     const userExist = await user.findOne({ email });
     if (userExist) {
-      res.status(400).json({message:'User With Same Email Already Exist'});
+      res.status(400).json({ message: "User With Same Email Already Exist" });
       throw new Error("User With Same Email Already Exist");
     }
 
@@ -27,14 +27,12 @@ module.exports = {
       password: hashedPassword,
     });
 
-    if(newUser){
-      res.status(200).json({ message: "User Registered Sucessfully.."});
+    if (newUser) {
+      res.status(200).json({ message: "User Registered Sucessfully.." });
+    } else {
+      res.status(400).json({ message: "Details Not Valid." });
+      throw new Error("Details Not Valid.");
     }
-    else {
-        res.status(400).json({message:'Details Not Valid.'});
-        throw new Error("Details Not Valid.");
-      }
-   
 
     // if (newUser) {
     //   res.status(201).json({
@@ -52,7 +50,7 @@ module.exports = {
     const { email, password } = req.body;
 
     if (!email || !password) {
-      res.status(400).json({message:'Fields Cannot Be Empty.'});
+      res.status(400).json({ message: "Fields Cannot Be Empty." });
       throw new Error("Fields Cannot Be Empty.");
     }
 
@@ -64,14 +62,20 @@ module.exports = {
           id: user.id,
           username: user.username,
           email: user.email,
-        },      
+        },
         process.env.JWT_SECRET,
         { expiresIn: "30d" }
       );
 
-      res.status(200).json({ message: "User Logged in Sucessfully..", accessToken });
+      res
+        .status(200)
+        .json({
+          message: "User Logged in Sucessfully..",
+          accessToken,
+          user: userlogged.email,
+        });
     } else {
-      res.status(401).json({message:'Email or Password not valid'});
+      res.status(401).json({ message: "Email or Password not valid" });
       throw new Error("Email or Password not valid");
     }
   }),
