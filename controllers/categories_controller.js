@@ -21,10 +21,11 @@ module.exports = {
 
   getCategoris: asyncHandler(async (req,res)=>{
     const getCat = await category.find();
+    res.status(200).json(getCat);
     if (!getCat) {
         res.status(404).json({ message: "No Categories Found" });
       }
-    res.status(200).json(getCat);
+   
   }),
 
   deleteCategory: asyncHandler(async (req,res)=>{
