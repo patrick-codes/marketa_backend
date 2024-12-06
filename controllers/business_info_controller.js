@@ -47,13 +47,14 @@ module.exports = {
 
     if (!updateInfo) {
       res.status(404).json({ message: "Info not found" });
-    } 
+    }
     const update = await businessInfo.findByIdAndUpdate(
       req.params.id,
       req.body,
       { new: true }
     );
 
+    res.status(200).json(update);
     res.status(200).json({ message: "Business Info Updated" });
   }),
 
@@ -70,6 +71,9 @@ module.exports = {
 
   getBusinessInfos: asyncHandler(async (req, res) => {
     const getInfo = await businessInfo.find();
+    if (!getInfo) {
+      res.status(404).json({ message: "No info found" });
+    }
     res.status(200).json(getInfo);
   }),
 

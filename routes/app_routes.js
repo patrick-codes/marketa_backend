@@ -5,6 +5,8 @@ const {
   getBusinessInfos,
   getSingleBusinessInfo,deleteBusinessInfo,
 } = require("../controllers/business_info_controller");
+
+
 const router = express.Router();
 
 router.post("/add", addBusinessInfo);
