@@ -11,31 +11,30 @@ module.exports = {
     const addCat = await category.create({
       categoryName,
     });
-    if (addCat) {
-      res.status(200).json({ message: "Category added succesfully" });
-    } else if (!addCat) {
+
+    res.status(200).json({ message: "Category added succesfully" });
+    if (!addCat) {
       res.status(401).json({ message: "Error Occured" });
       throw new Error("Error Occured");
     }
   }),
 
-  getCategoris: asyncHandler(async (req,res)=>{
+  getCategoris: asyncHandler(async (req, res) => {
     const getCat = await category.find();
     res.status(200).json(getCat);
     if (!getCat) {
-        res.status(404).json({ message: "No Categories Found" });
-      }
-   
+      res.status(404).json({ message: "No Categories Found" });
+    }
   }),
 
-  deleteCategory: asyncHandler(async (req,res)=>{
-const findCat = await category.findById(req.params.id);
+  deleteCategory: asyncHandler(async (req, res) => {
+    const findCat = await category.findById(req.params.id);
 
-if(!findCat){
-    res.status(404).json({message:"No Category Found"})
-}
+    if (!findCat) {
+      res.status(404).json({ message: "No Category Found" });
+    }
 
-const deleteCat = await category.deleteOne();
-res.status(200).json({message:"Category deleted succesfully"});
-  })
+    const deleteCat = await category.deleteOne();
+    res.status(200).json({ message: "Category deleted succesfully" });
+  }),
 };
