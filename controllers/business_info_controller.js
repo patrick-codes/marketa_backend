@@ -17,13 +17,13 @@ module.exports = {
     } = req.body;
 
     if (
-      businessName ||
-      businessType ||
-      category ||
-      address ||
-      region ||
-      city ||
-      contact
+      !businessName ||
+      !businessType ||
+      !category ||
+      !address ||
+      !region ||
+      !city ||
+      !contact
     ) {
       res.status(400).json({ message: "All fields are mandatory" });
       throw new Error("All fields are mandatory");
