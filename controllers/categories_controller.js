@@ -25,6 +25,8 @@ module.exports = {
     if (!getCat) {
       res.status(404).json({ message: "No Categories Found" });
     }
+
+    res.status(200).json(getCat);
   }),
 
   deleteCategory: asyncHandler(async (req, res) => {
