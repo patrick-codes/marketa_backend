@@ -55,8 +55,8 @@ module.exports = {
     const singleInfo = await businessInfo.findById(req.params.id);
 
     if (!singleInfo) {
-      res.status(400);
-      throw new Error("add business info");
+      res.status(404).json({message:"Error: No info found"});
+      throw new Error("Erro: No info found");
     }
 
     res.status(200).json(singleInfo);

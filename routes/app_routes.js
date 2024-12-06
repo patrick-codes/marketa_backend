@@ -10,6 +10,6 @@ const router = express.Router();
 router.post("/add", addBusinessInfo);
 router.post("/update", updateBusinessInfo);
 router.get("/getInfo", getBusinessInfos);
-router.get("/getSingleInfo", getSingleBusinessInfo);
+router.get("/getSingleInfo/:id", getSingleBusinessInfo);
 
 module.exports = router;
