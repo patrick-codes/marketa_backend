@@ -40,7 +40,7 @@ module.exports = {
     });
     res
       .status(200)
-      .json({ message: "Business Info Created Successfully" }, addInfo);
+      .json({ message: "Business Info Created Successfully" , addInfo});
   }),
 
   updateBusinessInfo: asyncHandler(async (req, res) => {}),
