@@ -47,9 +47,7 @@ module.exports = {
 
     if (!updateInfo) {
       res.status(404).json({ message: "Info not found" });
-    } else {
-      res.status(400).json({ message: "Error occured" });
-    }
+    } 
     const update = await businessInfo.findByIdAndUpdate(
       req.params.id,
       req.body,
@@ -62,13 +60,12 @@ module.exports = {
   deleteBusinessInfo: asyncHandler(async (req, res) => {
     const deleteInfo = await businessInfo.findById(req.params.id);
 
-    if(!deleteInfo){
-        res.status(404).json({message:"No Info found"});
-
+    if (!deleteInfo) {
+      res.status(404).json({ message: "No Info found" });
     }
 
     await deleteInfo.deleteOne();
-    res.status(200).json({message: "Info Deleted.."});
+    res.status(200).json({ message: "Info Deleted.." });
   }),
 
   getBusinessInfos: asyncHandler(async (req, res) => {
