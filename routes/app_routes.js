@@ -11,3 +11,5 @@ router.post("/add", addBusinessInfo);
 router.post("/update", updateBusinessInfo);
 router.get("/getInfo", getBusinessInfos);
 router.get("/getSingleInfo", getSingleBusinessInfo);
+
+module.exports = router;
