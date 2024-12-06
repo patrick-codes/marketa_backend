@@ -6,3 +6,5 @@ const categoriesSchema = mongoose.Schema({
     required: [true, ""],
   },
 });
+
+module.exports = mongoose.model("categoriesModel", categoriesSchema);
