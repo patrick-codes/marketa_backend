@@ -3,13 +3,14 @@ const {
   addBusinessInfo,
   updateBusinessInfo,
   getBusinessInfos,
-  getSingleBusinessInfo,
+  getSingleBusinessInfo,deleteBusinessInfo,
 } = require("../controllers/business_info_controller");
 const router = express.Router();
 
 router.post("/add", addBusinessInfo);
-router.post("/update", updateBusinessInfo);
+router.put("/:id", updateBusinessInfo);
 router.get("/getInfo", getBusinessInfos);
-router.get("/getSingleInfo/:id", getSingleBusinessInfo);
+router.get("/:id", getSingleBusinessInfo);
+router.delete("/:id",deleteBusinessInfo);
 
 module.exports = router;

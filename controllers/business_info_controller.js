@@ -42,9 +42,34 @@ module.exports = {
     res.status(200).json({ message: "Business Info Created Successfully" });
   }),
 
-  updateBusinessInfo: asyncHandler(async (req, res) => {}),
+  updateBusinessInfo: asyncHandler(async (req, res) => {
+    const updateInfo = await businessInfo.findById(req.params.id);
 
-  deleteBusinessInfo: asyncHandler(async (req, res) => {}),
+    if (!updateInfo) {
+      res.status(404).json({ message: "Info not found" });
+    } else {
+      res.status(400).json({ message: "Error occured" });
+    }
+    const update = await businessInfo.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true }
+    );
+
+    res.status(200).json({ message: "Business Info Updated" });
+  }),
+
+  deleteBusinessInfo: asyncHandler(async (req, res) => {
+    const deleteInfo = await businessInfo.findById(req.params.id);
+
+    if(!deleteInfo){
+        res.status(404).json({message:"No Info found"});
+
+    }
+
+    await deleteInfo.deleteOne();
+    res.status(200).json({message: "Info Deleted.."});
+  }),
 
   getBusinessInfos: asyncHandler(async (req, res) => {
     const getInfo = await businessInfo.find();
@@ -55,7 +80,7 @@ module.exports = {
     const singleInfo = await businessInfo.findById(req.params.id);
 
     if (!singleInfo) {
-      res.status(404).json({message:"Error: No info found"});
+      res.status(404).json({ message: "Error: No info found" });
       throw new Error("Erro: No info found");
     }
 
