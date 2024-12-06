@@ -38,11 +38,8 @@ module.exports = {
       city,
       contact,
     });
-    res.status(200).json(addInfo);
 
-    if (addInfo) {
-      res.status(200).json({ message: "Business Info Created Successfully" });
-    }
+    res.status(200).json({ message: "Business Info Created Successfully" });
   }),
 
   updateBusinessInfo: asyncHandler(async (req, res) => {}),
