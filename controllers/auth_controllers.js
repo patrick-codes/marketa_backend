@@ -71,9 +71,12 @@ module.exports = {
         .status(200)
         .json({
           message: "User Logged in Sucessfully..",
+          userId:userlogged.id,
           accessToken,
           user: userlogged.username,
-          user: userlogged.email,
+          userMail: userlogged.email,
+
+
         });
     } else {
       res.status(401).json({ message: "Email or Password not valid" });
